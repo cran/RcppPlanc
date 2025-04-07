@@ -107,7 +107,7 @@ namespace planc {
     }
 
     template<typename T, typename eT>
-    uinmfOutput<eT> NMFLIB_EXPORT nmflib<T, eT>::uinmf(const std::vector<std::shared_ptr<T>>&matPtrVec,
+    uinmfOutput<eT> nmflib<T, eT>::uinmf(const std::vector<std::shared_ptr<T>>&matPtrVec,
                                                        const std::vector<std::shared_ptr<T>>&unsharedPtrVec,
                                                        std::vector<int> whichUnshared,
                                                        const arma::uword&k, const int&nCores, const arma::vec&lambda,
@@ -237,5 +237,12 @@ namespace planc {
             resolvedH.push_back(*ptr);
         }
         return resolvedH;
+    }
+
+    template<typename T, typename eT>
+    int nmflib<T, eT>::runNMF(const params& opts) {
+        NMFDriver<T> myNMF(opts);
+        myNMF.callNMF();
+        return 0;
     }
 }
