@@ -35,7 +35,12 @@ set(TEMP_CMAKE_FIND_APPBUNDLE ${CMAKE_FIND_APPBUNDLE})
 set(CMAKE_FIND_APPBUNDLE "NEVER")
 
 # Find R.
-find_program(R_EXECUTABLE R DOC "R executable." PATHS ${R_RHOME} /usr/local/ PATH_SUFFIXES bin)
+find_program(R_EXECUTABLE R PATHS ${R_RHOME} PATH_SUFFIXES bin NO_CMAKE_SYSTEM_PATH NO_SYSTEM_ENVIRONMENT_PATH NO_CMAKE_ENVIRONMENT_PATH NO_PACKAGE_ROOT_PATH)
+find_program(R_EXECUTABLE R PATHS ${R_RHOME} PATH_SUFFIXES bin)
+if(NOT R_EXECUTABLE)
+  unset(R_EXECUTABLE CACHE)
+  find_program(R_EXECUTABLE R DOC "R executable." PATHS /usr/local/ PATH_SUFFIXES bin)
+endif()
 
 if(R_EXECUTABLE)
     # Get the R version.
@@ -77,6 +82,7 @@ execute_process(COMMAND sed -e "s/^LIBR = //" -e "t" -e "d" "${R_MAKECONF}"
                 OUTPUT_VARIABLE LIBR_STRING
                 ERROR_VARIABLE  LIBR_STRING
                 OUTPUT_STRIP_TRAILING_WHITESPACE)
+if(LIBR_STRING)
 string(REGEX MATCHALL "\\$\\([A-Za-z0-9_]*\\)" MAKECONF_REPLACE ${LIBR_STRING})
 foreach(VAR IN LISTS MAKECONF_REPLACE)
     string(SUBSTRING ${VAR} 2 -1 VARCLEAN)
@@ -96,6 +102,13 @@ foreach(VAR IN LISTS MAKECONF_REPLACE)
         string(REPLACE "${VAR}" "" LIBR_STRING "${LIBR_STRING}")
     endif()
 endforeach()
+else()
+execute_process(COMMAND ${RSCRIPT_EXECUTABLE} --vanilla "-e" ".Platform$r_arch)"
+                OUTPUT_VARIABLE R_ARCH
+                ERROR_VARIABLE  R_ARCH
+                OUTPUT_STRIP_TRAILING_WHITESPACE)
+set(LIBR_STRING -L${R_RHOME}/lib${R_ARCH} -lR)
+endif()
     # Some cleanup in location of R.
     string(REGEX MATCHALL "\".*\"" _R_INCLUDE_location "${_R_INCLUDE_location}")
     string(REGEX REPLACE "\"" "" _R_INCLUDE_location "${_R_INCLUDE_location}")

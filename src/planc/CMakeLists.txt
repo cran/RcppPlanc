@@ -56,6 +56,7 @@ endif ()
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND NOT MSVC)
     execute_process(COMMAND clang -v ERROR_VARIABLE CLANGID)
+    if(CLANGID)
     string(REGEX MATCH "\\(.*\\)" CLANGPARSE ${CLANGID})
     if (CLANGPARSE MATCHES "\\(CLANG\\: AOCC.*")
         set(BLA_VENDOR AOCL_mt)
@@ -63,6 +64,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang" AND NOT MSVC)
                 -fremap-arrays -fnt-store=aggressive -mrecip=all -optimize-strided-mem-cost
                 -fenable-aggressive-gather -favoid-fpe-causing-opt)
     endif ()
+  endif ()
 endif ()
 
 set(MKL_DIR "${PROJECT_SOURCE_DIR}/cmake")
@@ -243,7 +245,7 @@ else ()
     add_library(progressWrapper OBJECT ${PROJECT_SOURCE_DIR}/common/progressWrapper.cpp)
     target_link_libraries(progressWrapper PUBLIC indicators::indicators)
     target_include_directories(utils PUBLIC ${ARMADILLO_INCLUDE_DIRS})
-    target_link_libraries(utils PUBLIC progressWrapper ${CBLAS_LIBRARIES} ${BLAS_LIBRARIES} ${LAPACK_LIBRARIES})
+    target_link_libraries(utils PUBLIC progressWrapper $<$<BOOL:${CBLAS_LIBRARIES}>:${CBLAS_LIBRARIES}>  ${BLAS_LIBRARIES} ${LAPACK_LIBRARIES})
 endif ()
 
 if (MSVC)
@@ -328,7 +330,7 @@ add_library(hw_detect OBJECT ${PROJECT_SOURCE_DIR}/common/hw_detect.c)
 find_package(HWLOC)
 
 if (HWLOC_FOUND)
-    target_link_libraries(hw_detect PUBLIC "$<$<BOOL:pkgcfg_lib_HWLOC_hwloc>:${pkgcfg_lib_HWLOC_hwloc}>")
+    target_link_libraries(hw_detect PUBLIC "$<$<BOOL:HWLOC_LDFLAGS>:${HWLOC_LDFLAGS}>")
     target_include_directories(hw_detect PRIVATE "${HWLOC_INCLUDE_DIRS}")
 elseif (MSVC)
     FetchContent_Declare(hwloc
@@ -451,6 +453,14 @@ elseif (SKBUILD)
     target_link_libraries(nmflib PUBLIC progressWrapper)
     install(TARGETS pyplanc LIBRARY DESTINATION .)
     install(TARGETS nmflib RUNTIME DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/../" ARCHIVE DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/../" LIBRARY DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/../")
+else()
+    install(TARGETS nmflib
+            RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+            ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+            LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+    )
+    install(FILES ${nmf_headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libplanc/nmf)
+    install(FILES ${nnls_headers} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/libplanc/nnls)
 endif()
 if (BUILD_EXECUTABLE)
     add_executable(plancnmf nmf/nmf_cmd.cpp)
