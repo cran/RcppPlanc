@@ -1,3 +1,11 @@
+# RcppPlanc 2.0.5
+* Fixed typo in FindR.cmake (oops!)
+* Use HWLOC_LIBRARIES instead of HWLOC_LDFLAGS
+* Fixed mistake in H5SpMat constructor example
+* Added copyright indicators for HighFive and Armadillo
+* Fixed MKL detection
+* Fix error in UINMF logic
+
 # RcppPlanc 2.0.4
 * Fixed data.cpp opening H5SpMat as ReadWrite instead of ReadOnly
 * CMake now checks R_RHOME before path.

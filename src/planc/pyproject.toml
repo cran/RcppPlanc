@@ -1,6 +1,7 @@
 [project]
 name = "pyplanc"
 version = "0.0.1"
+description = "Python bindings for the libplanc C++ library."
 requires-python = ">=3.10"
 readme = "python/README.md"
 license.file = "license.md"
@@ -27,6 +28,7 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Programming Language :: C++",
   "Topic :: Scientific/Engineering :: Bio-Informatics",
   "Topic :: Scientific/Engineering :: Mathematics",
@@ -38,7 +40,7 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://welch-lab.github.io"
-Repository = "https://github.com/welch-lab/libplanc"
+GitHub = "https://github.com/welch-lab/libplanc"
 
 [project.optional-dependencies]
 test = [
@@ -50,18 +52,13 @@ dev = [
 ]
 
 [build-system]
-requires = ["scikit-build-core>=0.9", "nanobind>=2.6", "numpy>=2.0"]
+requires = ["scikit-build-core>=0.9", "nanobind>=2.7", "numpy>=2.0"]
 build-backend = "scikit_build_core.build"
 
 [tool]
 rye = { dev-dependencies = [
     "cibuildwheel>=2.23.2",
 ] }
-
-[tool.uv.sources]
-
-nanobind = {index = "personal"}
-
 
 [[tool.uv.index]]
 name = "personal"
@@ -92,7 +89,7 @@ build-frontend = "build[uv]"
 build-verbosity = 1
 skip = ["*-win32", "*-manylinux*_i686", "*-musllinux*_i686", "pp*-win_*"]
 test-command = "pytest -rq {project}/python/tests"
-before-test = ["python -m ensurepip", "python -m pip install pytest"]
+before-test = ["python -m ensurepip"  , "python -m pip install pytest"]
 
 [tool.cibuildwheel.macos]
 before-all = ["pipx install uv",
