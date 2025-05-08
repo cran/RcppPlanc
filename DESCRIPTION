@@ -1,8 +1,8 @@
 Package: RcppPlanc
 Type: Package
 Title: Parallel Low-Rank Approximation with Nonnegativity Constraints
-Version: 2.0.5
-Date: 2025-04-23
+Version: 2.0.6
+Date: 2025-05-07
 Authors@R: c(
   person(given = 'Andrew', family = 'Robbins', email = 'robbiand@umich.edu', role = c('aut', 'cre'), comment = c(ORCID = "0009-0001-7961-7489")),
   person(given = 'Yichen', family = 'Wang', email = 'wayichen@umich.edu', role = c('aut')),
@@ -35,14 +35,16 @@ Depends: R (>= 3.5)
 LazyData: true
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2025-04-23 15:10:04 UTC; andrew
-Author: Andrew Robbins [aut, cre] (<https://orcid.org/0009-0001-7961-7489>),
+Packaged: 2025-05-07 16:13:58 UTC; andrew
+Author: Andrew Robbins [aut, cre] (ORCID:
+    <https://orcid.org/0009-0001-7961-7489>),
   Yichen Wang [aut],
-  Joshua Welch [cph] (<https://orcid.org/0000-0002-5869-2391>),
-  Ramakrishnan Kannan [cph] (<https://orcid.org/0000-0002-5852-4806>),
-  Conrad Sanderson [cph] (<https://orcid.org/0000-0002-0049-4501>),
+  Joshua Welch [cph] (ORCID: <https://orcid.org/0000-0002-5869-2391>),
+  Ramakrishnan Kannan [cph] (ORCID:
+    <https://orcid.org/0000-0002-5852-4806>),
+  Conrad Sanderson [cph] (ORCID: <https://orcid.org/0000-0002-0049-4501>),
   Blue Brain Project/EPFL [cph] (HighFive Headers),
   UT-Batelle [cph] (The original PLANC code)
 Maintainer: Andrew Robbins <robbiand@umich.edu>
 Repository: CRAN
-Date/Publication: 2025-04-23 15:50:02 UTC
+Date/Publication: 2025-05-08 10:40:02 UTC
