@@ -1,8 +1,8 @@
 Package: RcppPlanc
 Type: Package
 Title: Parallel Low-Rank Approximation with Nonnegativity Constraints
-Version: 2.0.6
-Date: 2025-05-07
+Version: 2.0.7
+Date: 2025-05-08
 Authors@R: c(
   person(given = 'Andrew', family = 'Robbins', email = 'robbiand@umich.edu', role = c('aut', 'cre'), comment = c(ORCID = "0009-0001-7961-7489")),
   person(given = 'Yichen', family = 'Wang', email = 'wayichen@umich.edu', role = c('aut')),
@@ -35,7 +35,7 @@ Depends: R (>= 3.5)
 LazyData: true
 VignetteBuilder: knitr
 NeedsCompilation: yes
-Packaged: 2025-05-07 16:13:58 UTC; andrew
+Packaged: 2025-05-09 02:16:35 UTC; andrew
 Author: Andrew Robbins [aut, cre] (ORCID:
     <https://orcid.org/0009-0001-7961-7489>),
   Yichen Wang [aut],
@@ -47,4 +47,4 @@ Author: Andrew Robbins [aut, cre] (ORCID:
   UT-Batelle [cph] (The original PLANC code)
 Maintainer: Andrew Robbins <robbiand@umich.edu>
 Repository: CRAN
-Date/Publication: 2025-05-08 10:40:02 UTC
+Date/Publication: 2025-05-13 06:20:17 UTC

@@ -1,6 +1,6 @@
-c14379e8f108f2a2721050b2dd0060d1 *DESCRIPTION
+b142e34c1d62c5400dd25c16235bc465 *DESCRIPTION
 6d91dcb311488f8aa31aad6021aa480e *NAMESPACE
-fed05d089cb5e973a237ee36cc2deb5c *NEWS.md
+6f9e4c50bd8e4e405a71f436377d509c *NEWS.md
 489b284ecf7c9d11aa5fb00866025c07 *R/INMF.R
 6d6ce24c354da508d63091d4b285db78 *R/RcppExports.R
 7a2e208894f1b822d49d63b670b95d05 *R/RcppPlanc-package.R
@@ -20,7 +20,7 @@ b24284ce593c271b1a5f892d0e6fa1fa *inst/COPYRIGHTS
 65bb68aab2ad86ae219c1f610e7ffd35 *inst/License.note
 d3d3e80a94c9525d1da03af347d1104b *inst/doc/RcppPlanc.R
 01b1e873278347b894f7cb6b6ce35d48 *inst/doc/RcppPlanc.Rmd
-216b3a3a87382bd6734b5e6229a6455b *inst/doc/RcppPlanc.html
+746d053ee44f7a46a6c911d31170e4c4 *inst/doc/RcppPlanc.html
 494efb0eb721c021ab86f45c7199971a *inst/extdata/ctrl_dense.h5
 57ae44c5fbb4552a0d3df291a0212970 *inst/extdata/ctrl_sparse.h5
 73bace9fdceed7b39a0b7d4787a48c5b *inst/extdata/stim_dense.h5
@@ -47,7 +47,7 @@ ee19d178966ee7c339f5279a72374577 *src/planc/CMakeLists.txt
 a9fc8536aa3476112c860e7bc1485ca6 *src/planc/CMakePresets.json
 2640262a681a8b15447af891e45a8888 *src/planc/README.md
 f530b8549158cf30f5f8d7fe987c8515 *src/planc/cmake/FindHWLOC.cmake
-ed5a142011c56b27828fee395f778b41 *src/planc/cmake/FindR.cmake
+bcc8f98265bbef2c65e128227fe5b419 *src/planc/cmake/FindR.cmake
 83a8bf7144fa5bb1f9ce40fee7d52169 *src/planc/cmake/FindRModule.cmake
 d3bc03cbff1f602f84e48e70b028e97a *src/planc/cmake/TestOpenBlasThreading.cmake
 fe4e9917b7111eca694bec9a5e00fc6e *src/planc/cmake/test_openblas_threading.c

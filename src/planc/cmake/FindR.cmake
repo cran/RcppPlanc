@@ -102,14 +102,8 @@ foreach(VAR IN LISTS MAKECONF_REPLACE)
         string(REPLACE "${VAR}" "" LIBR_STRING "${LIBR_STRING}")
     endif()
 endforeach()
-else()
-execute_process(COMMAND ${RSCRIPT_EXECUTABLE} --vanilla "-e" ".Platform$r_arch"
-                OUTPUT_VARIABLE R_ARCH
-                ERROR_VARIABLE  R_ARCH
-                OUTPUT_STRIP_TRAILING_WHITESPACE)
-string(REGEX MATCHALL "\".*\"" R_ARCH "${R_ARCH}")
-string(REGEX REPLACE "\"" "" R_ARCH "${R_ARCH}")
-set(LIBR_STRING "-L${R_RHOME}/lib${R_ARCH} -lR")
+else() # if the regex is still failing, you may not actually need to link R
+    set(LIBR_STRING "")
 endif()
     # Some cleanup in location of R.
     string(REGEX MATCHALL "\".*\"" _R_INCLUDE_location "${_R_INCLUDE_location}")
@@ -119,7 +113,7 @@ endif()
     set(R_LDFLAGS ${LIBR_STRING})
 
 mark_as_advanced(RSCRIPT_EXECUTABLE R_EXECUTABLE)
-set(_REQUIRED_R_VARIABLES R_EXECUTABLE RSCRIPT_EXECUTABLE R_INCLUDE_DIR R_LDFLAGS)
+set(_REQUIRED_R_VARIABLES R_EXECUTABLE RSCRIPT_EXECUTABLE R_INCLUDE_DIR)
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(
