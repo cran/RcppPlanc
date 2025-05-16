@@ -19,6 +19,7 @@ dependencies = [
     "numpy>=1.23.5, <2.3",
     "threadpoolctl>=3.4.0, <4.0",
     "scipy>=1.12.0",
+    "progressbar2>=4.5.0",
 ]
 
 classifiers = [
@@ -52,7 +53,7 @@ dev = [
 ]
 
 [build-system]
-requires = ["scikit-build-core>=0.9", "nanobind>=2.7", "numpy>=2.0"]
+requires = ["scikit-build-core>=0.10", "nanobind>=2.7", "numpy>=2.0"]
 build-backend = "scikit_build_core.build"
 
 [tool]
@@ -66,7 +67,7 @@ url = "https://pypi.robbinsa.me/simple/"
 explicit = true
 
 [tool.scikit-build]
-minimum-version = "0.9"
+minimum-version = "build-system.requires"
 build-dir = "build/{wheel_tag}"
 wheel.py-api = "cp312"
 sdist.exclude = [
@@ -74,7 +75,7 @@ sdist.exclude = [
 ]
 
 [tool.scikit-build.cmake]
-version = ">=3.21"
+version = "CMakeLists.txt"
 #[tool.scikit-build.cmake.define]
 #CMAKE_TOOLCHAIN_FILE = "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/vcpkg/scripts/buildsystems/vcpkg.cmake"
 
@@ -90,6 +91,7 @@ build-verbosity = 1
 skip = ["*-win32", "*-manylinux*_i686", "*-musllinux*_i686", "pp*-win_*"]
 test-command = "pytest -rq {project}/python/tests"
 before-test = ["python -m ensurepip"  , "python -m pip install pytest"]
+environment-pass = ["VCPKG_BINARY_SOURCES", "VCPKG_FEATURE_FLAGS", "VCPKG_HOST_PATH"]
 
 [tool.cibuildwheel.macos]
 before-all = ["pipx install uv",
@@ -101,13 +103,11 @@ before-test = ["python -m ensurepip", "python -m pip install pytest", "python -m
 [tool.cibuildwheel.macos.environment]
 MACOSX_DEPLOYMENT_TARGET = "10.15"
 SKBUILD_CMAKE_DEFINE="CMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake"
-VCPKG_BINARY_SOURCES = "clear;x-gha,readwrite"
 FC="gfortran-13"
 [[tool.cibuildwheel.overrides]]
 select = "*-macosx_arm64"
 environment.MACOSX_DEPLOYMENT_TARGET="11"
 environment.SKBUILD_CMAKE_DEFINE="CMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake"
-environment.VCPKG_BINARY_SOURCES = "clear;x-gha,readwrite"
 environment.FC="gfortran-13"
 
 [tool.cibuildwheel.linux]
@@ -123,16 +123,13 @@ environment.SKBUILD_CMAKE_DEFINE = "CMAKE_TOOLCHAIN_FILE=/host/usr/local/share/v
 environment.CC = "gcc"
 environment.CXX = "g++"
 environment.VCPKG_INSTALLATION_ROOT = "/host/usr/local/share/vcpkg/"
-environment.VCPKG_BINARY_SOURCES = "clear;x-gha,readwrite;files,/host/tmp/vcpkg-binary/,readwrite"
-environment-pass = ["VCPKG_BINARY_SOURCES", "ACTIONS_CACHE_URL", "ACTIONS_RUNTIME_TOKEN"]
 [[tool.cibuildwheel.overrides]]
 select = "pp*-manylinux*"
 environment.SKBUILD_CMAKE_DEFINE = "CMAKE_TOOLCHAIN_FILE=/host/usr/local/share/vcpkg/scripts/buildsystems/vcpkg.cmake"
 environment.CC = "gcc"
 environment.CXX = "g++"
 environment.VCPKG_INSTALLATION_ROOT = "/host/usr/local/share/vcpkg/"
-environment.VCPKG_BINARY_SOURCES = "clear;x-gha,readwrite;files,/host/tmp/vcpkg-binary/,readwrite"
-environment-pass = ["VCPKG_BINARY_SOURCES", "ACTIONS_CACHE_URL", "ACTIONS_RUNTIME_TOKEN"]
+environment.VCPKG_BINARY_SOURCES = "clear;files,/host/$VCPKG_HOST_PATH,readwrite"
 before-test = ["python -m ensurepip", "python -m pip install -U pip", "python -m pip install pytest scipy --extra-index-url https://pypi.robbinsa.me/simple/ --prefer-binary",]
 
 [[tool.cibuildwheel.overrides]]
@@ -143,8 +140,7 @@ before-all = ["apk add bash build-base cmake libtool zip unzip curl git g++ make
     "./vcpkg/vcpkg install"]
 environment.SKBUILD_CMAKE_DEFINE = "CMAKE_TOOLCHAIN_FILE=vcpkg/scripts/buildsystems/vcpkg.cmake"
 environment.VCPKG_INSTALLATION_ROOT = "/host/usr/local/share/vcpkg/"
-environment.VCPKG_BINARY_SOURCES = "clear;x-gha,readwrite;files,/host/tmp/vcpkg-binary/,readwrite"
-environment-pass = ["VCPKG_BINARY_SOURCES", "ACTIONS_CACHE_URL", "ACTIONS_RUNTIME_TOKEN"]
+environment.VCPKG_BINARY_SOURCES = "clear;files,/host/$VCPKG_HOST_PATH,readwrite"
 
 
 #before-all = "apk add hwloc-dev armadillo-dev openblas-dev"
@@ -159,4 +155,8 @@ before-build = "pip install delvewheel"
 repair-wheel-command = "delvewheel repair -w {dest_dir} {wheel} --add-path .\\build"
 [tool.cibuildwheel.windows.environment]
 SKBUILD_CMAKE_DEFINE="CMAKE_TOOLCHAIN_FILE=$VCPKG_INSTALLATION_ROOT/scripts/buildsystems/vcpkg.cmake"
-VCPKG_BINARY_SOURCES = "clear;x-gha,readwrite"
+
+[dependency-groups]
+dev = [
+    "nanobind>=2.7.0",
+]
