@@ -1,6 +1,6 @@
-bfbdc5c5100568b281514eee80de9f2d *DESCRIPTION
+f3f375ec006b80cb81a7e70959f07511 *DESCRIPTION
 6d91dcb311488f8aa31aad6021aa480e *NAMESPACE
-844c7e0c531b9d460990968b77a03710 *NEWS.md
+39fcd117b5a0d117db97c10ba2686054 *NEWS.md
 489b284ecf7c9d11aa5fb00866025c07 *R/INMF.R
 6d6ce24c354da508d63091d4b285db78 *R/RcppExports.R
 7a2e208894f1b822d49d63b670b95d05 *R/RcppPlanc-package.R
@@ -20,7 +20,7 @@ b24284ce593c271b1a5f892d0e6fa1fa *inst/COPYRIGHTS
 65bb68aab2ad86ae219c1f610e7ffd35 *inst/License.note
 d3d3e80a94c9525d1da03af347d1104b *inst/doc/RcppPlanc.R
 01b1e873278347b894f7cb6b6ce35d48 *inst/doc/RcppPlanc.Rmd
-cb0defcc6cdde13fe9096495f08c0bea *inst/doc/RcppPlanc.html
+e2acf6eee9586d02f6f35fc04b0cfad2 *inst/doc/RcppPlanc.html
 494efb0eb721c021ab86f45c7199971a *inst/extdata/ctrl_dense.h5
 57ae44c5fbb4552a0d3df291a0212970 *inst/extdata/ctrl_sparse.h5
 73bace9fdceed7b39a0b7d4787a48c5b *inst/extdata/stim_dense.h5
@@ -43,7 +43,7 @@ cf0a4e6b8b895cfb38d62a0243dfe492 *man/print.H5Mat.Rd
 998a498f19646b7e9b8ae7e62048aaf5 *src/Makevars.in
 fb24d62fc9da988d448b938edb0b3de8 *src/RcppExports.cpp
 771de8a23df4344dc3953babc1def386 *src/RcppPlanc-win.def
-1a91d5298c632993aa8b7c2e812e953c *src/planc/CMakeLists.txt
+fb6d53b3dc4c15fd3c7499b81ff7e47b *src/planc/CMakeLists.txt
 a9fc8536aa3476112c860e7bc1485ca6 *src/planc/CMakePresets.json
 2640262a681a8b15447af891e45a8888 *src/planc/README.md
 f530b8549158cf30f5f8d7fe987c8515 *src/planc/cmake/FindHWLOC.cmake
@@ -53,7 +53,7 @@ d3bc03cbff1f602f84e48e70b028e97a *src/planc/cmake/TestOpenBlasThreading.cmake
 fe4e9917b7111eca694bec9a5e00fc6e *src/planc/cmake/test_openblas_threading.c
 98ed31a87e4f9056f8425f8018d52103 *src/planc/common/cmake_aux/FindSuperLU.cmake
 01b374cac7cae219adcef17def6db6d6 *src/planc/common/cmake_aux/NMFLIB_FindARMA.cmake
-3923ae58593e09c9183998d4409f201b *src/planc/common/config.h
+2e0ae5d94eb8adb8cb0d070a7d37a54d *src/planc/common/config.h
 dee4f6262f53f98915022d9852f20dcd *src/planc/common/data.cpp
 49746c9271c804014791adb20a95c1bd *src/planc/common/data.hpp
 c248850de41685a093774b4e823f2b7b *src/planc/common/detect_blas.c
@@ -72,9 +72,9 @@ ed2af7c59a96d7bbc2abb0afd451a691 *src/planc/common/parseutils.hpp
 c2fa413dea03232d1626d8774dc09949 *src/planc/common/progressWrapper.cpp
 0334805c982584e70b072873b540ffe1 *src/planc/common/progressWrapper.h
 f37f5cdb145dc6b07c574e1ff891a133 *src/planc/common/tensor.hpp
-6ea3a948ce5a9ba423a190ce626f967f *src/planc/common/utils.cpp
+c7c83082e8e2b9dc0025d227d0c8b6cf *src/planc/common/utils.cpp
 7b95f4a770009423ad9effd857d760b1 *src/planc/common/utils.h
-cbfd600f5807b85c0cf1f37fff1f7255 *src/planc/common/utils.hpp
+979cfb6b1eef7e5afa0400e1aaaa5dc1 *src/planc/common/utils.hpp
 62a9ee64971b11813684777d67bbc427 *src/planc/datasets.md
 804fdf90a0c078e703c5e570714b45ab *src/planc/license.md
 9cde01bd546890893872894fd2f01a32 *src/planc/nmf/CMakeLists.txt
@@ -105,7 +105,7 @@ cffdfcdb1b624cd0a7b4cab5e8dc9eb1 *src/planc/nnls/nnls_lib.cpp
 efe7eb43eccd9577e9ee3707463b2648 *src/planc/nnls/nnls_lib.hpp
 b9acb84e8b9df144659795e3e4e0f73e *src/planc/nnls/nnls_lib.inl
 f20f5d731393edde1a984f5149ecd10c *src/planc/papers.md
-7c2d4a55bebc6a9baf0890428e226e5b *src/planc/pyproject.toml
+26faaa98f568f67940e0e3e069cf1e12 *src/planc/pyproject.toml
 d65cac2e41766638e0f33d57e4619dfb *src/planc/requirements-dev.lock
 de817ed8b19c74268a4ea59c36e8c1ac *src/planc/requirements.lock
 e426ae8f8a4ec3745022607f9760d8e2 *src/planc/testcases.md
