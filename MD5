@@ -1,6 +1,6 @@
-1053766a286ab71e05b1c9c2060628ad *DESCRIPTION
+e3ded2208a02a82fe177859b194e48ab *DESCRIPTION
 6d91dcb311488f8aa31aad6021aa480e *NAMESPACE
-e10fe591a77163087a7dc7c31ed0c4c9 *NEWS.md
+835c9f7cce2364f4721bc41502107275 *NEWS.md
 489b284ecf7c9d11aa5fb00866025c07 *R/INMF.R
 6d6ce24c354da508d63091d4b285db78 *R/RcppExports.R
 7a2e208894f1b822d49d63b670b95d05 *R/RcppPlanc-package.R
@@ -20,7 +20,7 @@ b24284ce593c271b1a5f892d0e6fa1fa *inst/COPYRIGHTS
 65bb68aab2ad86ae219c1f610e7ffd35 *inst/License.note
 d3d3e80a94c9525d1da03af347d1104b *inst/doc/RcppPlanc.R
 01b1e873278347b894f7cb6b6ce35d48 *inst/doc/RcppPlanc.Rmd
-1ee10f493e865825c76fca9f8d8ca842 *inst/doc/RcppPlanc.html
+e915a99000c280d4cfcca3e0f519772c *inst/doc/RcppPlanc.html
 494efb0eb721c021ab86f45c7199971a *inst/extdata/ctrl_dense.h5
 57ae44c5fbb4552a0d3df291a0212970 *inst/extdata/ctrl_sparse.h5
 73bace9fdceed7b39a0b7d4787a48c5b *inst/extdata/stim_dense.h5
@@ -43,7 +43,7 @@ cf0a4e6b8b895cfb38d62a0243dfe492 *man/print.H5Mat.Rd
 998a498f19646b7e9b8ae7e62048aaf5 *src/Makevars.in
 4466237ff64d1bb4e8c2e7687713dc45 *src/RcppExports.cpp
 771de8a23df4344dc3953babc1def386 *src/RcppPlanc-win.def
-c6fdc4b1083a65c5476284d86e84bf90 *src/planc/CMakeLists.txt
+afa94b6cf03abb8f2e3e1ad89e9052c4 *src/planc/CMakeLists.txt
 a9fc8536aa3476112c860e7bc1485ca6 *src/planc/CMakePresets.json
 2640262a681a8b15447af891e45a8888 *src/planc/README.md
 f530b8549158cf30f5f8d7fe987c8515 *src/planc/cmake/FindHWLOC.cmake
@@ -110,15 +110,15 @@ d65cac2e41766638e0f33d57e4619dfb *src/planc/requirements-dev.lock
 de817ed8b19c74268a4ea59c36e8c1ac *src/planc/requirements.lock
 e426ae8f8a4ec3745022607f9760d8e2 *src/planc/testcases.md
 6649c69d2c1e2211fc2c0e0b4ae446ad *src/planc/vcpkg.json
-f481d0a8d6d3a01bad4270eaf5c77955 *src/rcppplanc_nmf.cpp
+4e4a22bcef359420a0d8ea7291b138b6 *src/rcppplanc_nmf.cpp
 fff162a4c1db4e4974a89fa3cde07e78 *src/rcppplanc_nnls.cpp
 1e3e92c9e707a91d237f87443fe86e31 *tests/testthat.R
 ae0fa3adcec90911fdb4fd38968b5aa0 *tests/testthat/helper-nmf.R
 982ad6da3d6ddfdfacfc4fe7e31c7913 *tests/testthat/test_inmf.R
-efbbb042dba49d2ea906fd27f4818e2b *tests/testthat/test_nmf.R
+eac4014e874e5e6d1d8eb5313727bb55 *tests/testthat/test_nmf.R
 8c8e8f51ce0479513bc0a1b589a64f04 *tools/patches/00_remove_stdio.patch
-99e93f8ea38c68b7065e622217ff98a6 *tools/patches/01_remove_sprintf.patch
+8d012edd0201e01791796e3f1a4b3757 *tools/patches/01_remove_sprintf.patch
 180267ef83b98c82b434b381f17d8be4 *tools/patches/02_adjust_windows_types.patch
-8d79a3a0e47211bda4597947ec3573c4 *tools/patches/03_remove_abort.patch
+0a43391ccfadad743c1193f1395b1bdd *tools/patches/03_remove_abort.patch
 d454fcbff44dd9e18a293c5303c7214e *tools/patches/series
 01b1e873278347b894f7cb6b6ce35d48 *vignettes/RcppPlanc.Rmd
