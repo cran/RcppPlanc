@@ -1,6 +1,6 @@
-e3ded2208a02a82fe177859b194e48ab *DESCRIPTION
+a318b06f941a38ac5a1edc2d08c0e4f8 *DESCRIPTION
 6d91dcb311488f8aa31aad6021aa480e *NAMESPACE
-835c9f7cce2364f4721bc41502107275 *NEWS.md
+32ceee0fb140821b33fec06b6e339512 *NEWS.md
 489b284ecf7c9d11aa5fb00866025c07 *R/INMF.R
 6d6ce24c354da508d63091d4b285db78 *R/RcppExports.R
 7a2e208894f1b822d49d63b670b95d05 *R/RcppPlanc-package.R
@@ -8,11 +8,11 @@ e3ded2208a02a82fe177859b194e48ab *DESCRIPTION
 88b8f6d97b80c8286508420147d3aa58 *R/data.R
 3b1c31fa384046e563b1311afacf8213 *R/utils.R
 681debb14513dca708dcbb44b7d69ddc *R/zzz.R
-e83cea305927f53b4b85f16f30319275 *README.md
-7d72d9a5247178744a35f7e0e9d5f911 *build/vignette.rds
+8a735f1f727bf4ae7082f3f7e32af2b8 *README.md
+925059276574a4ecba73118eab7a51b0 *build/vignette.rds
 f9609f0b63b33bdc0dcfed856d2de41e *cleanup
 14a206bfd7f8db643295dee9e1f0225d *cleanup.ucrt
-c5308affa67f573d069d84abe84a7620 *configure
+58b73b506dd21140d1ef0dca8ab2ad92 *configure
 df482a0e2fdf367323daaae78ad938b8 *configure.ucrt
 efa57fad06b7c1f1d0ad3f8faba4d8f9 *data/ctrl.sparse.rda
 530473ea0f0276a6fab9d5b1aa1c2d3e *data/stim.sparse.rda
@@ -20,7 +20,7 @@ b24284ce593c271b1a5f892d0e6fa1fa *inst/COPYRIGHTS
 65bb68aab2ad86ae219c1f610e7ffd35 *inst/License.note
 d3d3e80a94c9525d1da03af347d1104b *inst/doc/RcppPlanc.R
 01b1e873278347b894f7cb6b6ce35d48 *inst/doc/RcppPlanc.Rmd
-e915a99000c280d4cfcca3e0f519772c *inst/doc/RcppPlanc.html
+c1ea5c1c4ed1835aadc30aba62163b79 *inst/doc/RcppPlanc.html
 494efb0eb721c021ab86f45c7199971a *inst/extdata/ctrl_dense.h5
 57ae44c5fbb4552a0d3df291a0212970 *inst/extdata/ctrl_sparse.h5
 73bace9fdceed7b39a0b7d4787a48c5b *inst/extdata/stim_dense.h5
@@ -43,7 +43,7 @@ cf0a4e6b8b895cfb38d62a0243dfe492 *man/print.H5Mat.Rd
 998a498f19646b7e9b8ae7e62048aaf5 *src/Makevars.in
 4466237ff64d1bb4e8c2e7687713dc45 *src/RcppExports.cpp
 771de8a23df4344dc3953babc1def386 *src/RcppPlanc-win.def
-afa94b6cf03abb8f2e3e1ad89e9052c4 *src/planc/CMakeLists.txt
+170081d08b56f4983fbcb3e63da04d48 *src/planc/CMakeLists.txt
 a9fc8536aa3476112c860e7bc1485ca6 *src/planc/CMakePresets.json
 2640262a681a8b15447af891e45a8888 *src/planc/README.md
 f530b8549158cf30f5f8d7fe987c8515 *src/planc/cmake/FindHWLOC.cmake
@@ -69,8 +69,8 @@ b9eb17ce700c8b3822652c47c7cc9fb2 *src/planc/common/inmf.hpp
 dfe0bf9fd1f59473f0d8d2155287dbde *src/planc/common/parseutils.cpp
 ed2af7c59a96d7bbc2abb0afd451a691 *src/planc/common/parseutils.hpp
 524f8eb3669ae8158d94cf603d2cff38 *src/planc/common/plancopts.h
-c2fa413dea03232d1626d8774dc09949 *src/planc/common/progressWrapper.cpp
-0334805c982584e70b072873b540ffe1 *src/planc/common/progressWrapper.h
+7bdb18ac79794eb7163a4b9bb240a2df *src/planc/common/progressWrapper.cpp
+d01bd611f18834206c10833186e80386 *src/planc/common/progressWrapper.h
 f37f5cdb145dc6b07c574e1ff891a133 *src/planc/common/tensor.hpp
 c7c83082e8e2b9dc0025d227d0c8b6cf *src/planc/common/utils.cpp
 55641093d9cc8e8c5fb31d7cce645d24 *src/planc/common/utils.h
@@ -79,7 +79,7 @@ c7c83082e8e2b9dc0025d227d0c8b6cf *src/planc/common/utils.cpp
 804fdf90a0c078e703c5e570714b45ab *src/planc/license.md
 9cde01bd546890893872894fd2f01a32 *src/planc/nmf/CMakeLists.txt
 b537da671784ccd0e1700bc6fd4c5959 *src/planc/nmf/EmbeddedNMFDriver.hpp
-d66d98ffe606c8e0337a168b47ae5eab *src/planc/nmf/NMFDriver.hpp
+259f303475c347a3d35852040a51a8d8 *src/planc/nmf/NMFDriver.hpp
 bea7f5b9d725ee5013a79847b84400c6 *src/planc/nmf/README.md
 64ed20157c1aef66d12a8e6799508f6e *src/planc/nmf/aoadmm.hpp
 64a52ad8198b57cb68e80085e7c1e5e8 *src/planc/nmf/bppinmf.hpp
@@ -105,7 +105,7 @@ cffdfcdb1b624cd0a7b4cab5e8dc9eb1 *src/planc/nnls/nnls_lib.cpp
 efe7eb43eccd9577e9ee3707463b2648 *src/planc/nnls/nnls_lib.hpp
 b9acb84e8b9df144659795e3e4e0f73e *src/planc/nnls/nnls_lib.inl
 f20f5d731393edde1a984f5149ecd10c *src/planc/papers.md
-26faaa98f568f67940e0e3e069cf1e12 *src/planc/pyproject.toml
+449b021b519e381a486a1cbce898b061 *src/planc/pyproject.toml
 d65cac2e41766638e0f33d57e4619dfb *src/planc/requirements-dev.lock
 de817ed8b19c74268a4ea59c36e8c1ac *src/planc/requirements.lock
 e426ae8f8a4ec3745022607f9760d8e2 *src/planc/testcases.md
@@ -116,9 +116,9 @@ fff162a4c1db4e4974a89fa3cde07e78 *src/rcppplanc_nnls.cpp
 ae0fa3adcec90911fdb4fd38968b5aa0 *tests/testthat/helper-nmf.R
 982ad6da3d6ddfdfacfc4fe7e31c7913 *tests/testthat/test_inmf.R
 eac4014e874e5e6d1d8eb5313727bb55 *tests/testthat/test_nmf.R
-8c8e8f51ce0479513bc0a1b589a64f04 *tools/patches/00_remove_stdio.patch
-8d012edd0201e01791796e3f1a4b3757 *tools/patches/01_remove_sprintf.patch
-180267ef83b98c82b434b381f17d8be4 *tools/patches/02_adjust_windows_types.patch
-0a43391ccfadad743c1193f1395b1bdd *tools/patches/03_remove_abort.patch
+b0ad08740b6d79342138de9cbd8b7abf *tools/patches/00_remove_stdio.patch
+3d1a25acc36ca159138f2d9dc8ef821a *tools/patches/01_remove_sprintf.patch
+e0ae5cd5486be3fec370c2bc7ecf996d *tools/patches/02_adjust_windows_types.patch
+e80041aec310046f05a005701eaa6a9e *tools/patches/03_remove_abort.patch
 d454fcbff44dd9e18a293c5303c7214e *tools/patches/series
 01b1e873278347b894f7cb6b6ce35d48 *vignettes/RcppPlanc.Rmd
