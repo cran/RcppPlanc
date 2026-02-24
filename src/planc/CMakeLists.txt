@@ -130,8 +130,8 @@ endif ()
 set(HIGHFIVE_FIND_HDF5 OFF)
 FetchContent_Declare(
         HighFive
-        URL https://github.com/highfive-devs/HighFive/archive/refs/tags/v3.0.0.tar.gz
-        URL_HASH SHA256=cf9ad114b79bfa2c1deceefc6d4e710b882451ebaa81c063e2eb1de908e7c989
+        URL https://github.com/highfive-devs/HighFive/archive/refs/tags/v3.2.0.tar.gz
+        URL_HASH SHA256=01ea2eed7dbce1cf5dfff59476cfa113a7822b641aecbd99c674592fe7a4e630
 )
 if(BUILD_RCPP)
     find_r_module(HighFive)
@@ -226,14 +226,14 @@ elseif (SKBUILD)
     if(NOT Armadillo_FOUND)
     FetchContent_Declare(
             Armadillo
-            URL https://phoenixnap.dl.sourceforge.net/project/arma/armadillo-14.4.3.tar.xz
-            URL_HASH SHA256=c3aadd59bdb0ea4339b056f29972f92ee19fdc52f68eb78d32d2e4caf4d80c3a
+            URL https://cytranet-dal.dl.sourceforge.net/project/arma/armadillo-15.2.3.tar.xz
+            URL_HASH SHA256=0182d67d6949e4347a0bc62fc8c2793be7eb203c71f19edff93f8c45fd4a8190
     )
     FetchContent_MakeAvailable(Armadillo)
     endif()
     find_package(indicators CONFIG REQUIRED)
     add_library(progressWrapper OBJECT ${PROJECT_SOURCE_DIR}/common/progressWrapper.cpp)
-    target_include_directories(utils PUBLIC "${Armadillo_SOURCE_DIR}/include")
+    target_include_directories(utils PUBLIC "${armadillo_BINARY_DIR}/tmp/include")
     target_link_libraries(utils PUBLIC progressWrapper)
 else ()
     find_package(Armadillo CONFIG REQUIRED)
@@ -325,12 +325,16 @@ add_library(hw_detect OBJECT ${PROJECT_SOURCE_DIR}/common/hw_detect.c)
 find_package(HWLOC)
 
 if (HWLOC_FOUND)
-    target_link_libraries(hw_detect PUBLIC "$<IF:$<BOOL:pkgcfg_lib_HWLOC_hwloc>,${pkgcfg_lib_HWLOC_hwloc},${HWLOC_LDFLAGS}>")
+    if(pkgcfg_lib_HWLOC_hwloc)
+         target_link_libraries(hw_detect PUBLIC ${pkgcfg_lib_HWLOC_hwloc})
+    else()
+         target_link_libraries(hw_detect PUBLIC ${HWLOC_hwloc_LIBRARY})
+    endif()
     target_include_directories(hw_detect PRIVATE "${HWLOC_INCLUDE_DIRS}")
 elseif (MSVC)
     FetchContent_Declare(hwloc
-            URL https://download.open-mpi.org/release/hwloc/v2.12/hwloc-2.12.1.tar.gz
-            URL_HASH SHA256=ffa02c3a308275a9339fbe92add054fac8e9a00cb8fe8c53340094012cb7c633
+            URL https://download.open-mpi.org/release/hwloc/v2.13/hwloc-2.13.0.tar.gz
+            URL_HASH SHA256=1514a5253f0a5c23bc006d3bdd30a6f6125c9a8dc9b5fa4984913d1fff45315d
             SOURCE_SUBDIR contrib/windows-cmake
     )
     set(HWLOC_ENABLE_TESTING INTERNAL BOOL OFF)
@@ -372,22 +376,22 @@ else ()
         file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/../../tools/patches/series" hwloc_patch_list)
         list(TRANSFORM hwloc_patch_list PREPEND "${CMAKE_CURRENT_SOURCE_DIR}/../../tools/patches/")
         ExternalProject_Add(hwloc
-                URL https://download.open-mpi.org/release/hwloc/v2.12/hwloc-2.12.1.tar.gz
-                URL_HASH SHA256=ffa02c3a308275a9339fbe92add054fac8e9a00cb8fe8c53340094012cb7c633
+                URL https://download.open-mpi.org/release/hwloc/v2.13/hwloc-2.13.0.tar.gz
+                URL_HASH SHA256=1514a5253f0a5c23bc006d3bdd30a6f6125c9a8dc9b5fa4984913d1fff45315d
                 PATCH_COMMAND ${CMAKE_COMMAND} -E cat ${hwloc_patch_list} | ${PATCH} -p1 -l
                 BUILD_BYPRODUCTS <BINARY_DIR>/hwloc/.libs/libhwloc_embedded.a
                 CONFIGURE_COMMAND ${CMAKE_COMMAND} -E env "LD=${HWLOC_LD}" "CFLAGS=-DNDEBUG $ENV{CFLAGS} $<$<BOOL:${APPLE}>:-mmacosx-version-min=11>" ${cmd} && ${CMAKE_COMMAND} -E touch_nocreate ../hwloc/aclocal.m4 && ${CMAKE_COMMAND} -E touch_nocreate ../hwloc/Makefile.in && ${CMAKE_COMMAND} -E touch_nocreate ../hwloc/configure && ${CMAKE_COMMAND} -E touch_nocreate config.status
         )
     else ()
         ExternalProject_Add(hwloc
-                URL https://download.open-mpi.org/release/hwloc/v2.11/hwloc-2.11.2.tar.gz
-                URL_HASH SHA256=866ac8ef07b350a6a2ba0c6826c37d78e8994dcbcd443bdd2b436350de19d540
+                URL https://download.open-mpi.org/release/hwloc/v2.13/hwloc-2.13.0.tar.gz
+                URL_HASH SHA256=1514a5253f0a5c23bc006d3bdd30a6f6125c9a8dc9b5fa4984913d1fff45315d
                 BUILD_BYPRODUCTS <BINARY_DIR>/hwloc/.libs/libhwloc_embedded.a
                 CONFIGURE_COMMAND ${CMAKE_COMMAND} -E env "CFLAGS=-DNDEBUG $ENV{CFLAGS} $<$<BOOL:${APPLE}>:-mmacosx-version-min=10.14>" ${cmd} && ${CMAKE_COMMAND} -E touch_nocreate ../hwloc/aclocal.m4 && ${CMAKE_COMMAND} -E touch_nocreate ../hwloc/Makefile.in && ${CMAKE_COMMAND} -E touch_nocreate ../hwloc/configure && ${CMAKE_COMMAND} -E touch_nocreate config.status
         )
     endif ()
     ExternalProject_Get_Property(hwloc SOURCE_DIR BINARY_DIR)
-    set(HWLOC_LDFLAGS "${BINARY_DIR}/hwloc/.libs/libhwloc_embedded.a")
+    set(HWLOC_hwloc_LIBRARY "${BINARY_DIR}/hwloc/.libs/libhwloc_embedded.a")
     unset(pkgcfg_lib_HWLOC_hwloc)
     target_include_directories(hw_detect PRIVATE "${BINARY_DIR}/include" "${SOURCE_DIR}/include")
     add_custom_command(TARGET hwloc POST_BUILD
@@ -440,18 +444,27 @@ if (BUILD_RCPP)
     endif ()
     else ()
         if(APPLE AND ((CMAKE_HOST_SYSTEM_PROCESSOR MATCHES arm64) OR NOT OpenMP_CXX_FOUND))
-            set(BLAS_LIBRARIES_EXTRACT '-L-framework -LAccelerate')
+            set(BLA_VENDOR "Apple")
+            find_package(BLAS REQUIRED)
+            cmake_path(REMOVE_FILENAME BLAS_LIBRARIES OUTPUT_VARIABLE BLAS_LIBRARIES_FRAMEWORK)
+            set(BLAS_LIBRARIES_EXTRACT "-F${BLAS_LIBRARIES_FRAMEWORK} -framework Accelerate")
             unset(BLAS_LIBRARIES)
             unset(LAPACK_LIBRARIES)
         endif()
-        set(EXTRA_LD_ARGS ${BLAS_LIBRARIES_EXTRACT} ${BLAS_LIBRARIES} ${LAPACK_LIBRARIES} ${pkgcfg_lib_HWLOC_hwloc} ${HWLOC_LDFLAGS} "$<$<BOOL:${HWLOC_FRAMEWORKS}>:${HWLOC_FRAMEWORKS}>" ${HDF5_LIBRARIES} ${R_LDFLAGS} ${RCPP_FLIBS})
+        set(EXTRA_LD_ARGS ${BLAS_LIBRARIES} ${LAPACK_LIBRARIES} ${pkgcfg_lib_HWLOC_hwloc} ${HWLOC_hwloc_LIBRARY} "$<$<BOOL:${HWLOC_FRAMEWORKS}>:${HWLOC_FRAMEWORKS}>" ${HDF5_LIBRARIES} ${R_LDFLAGS} ${RCPP_FLIBS} ${BLAS_LIBRARIES_EXTRACT})
     list(JOIN EXTRA_LD_ARGS " " EXTRA_LD_ARGS)
     endif ()
     install(TARGETS nmflib RUNTIME DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/../" ARCHIVE DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/../" LIBRARY DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/../")
     configure_file(../Makevars.in ../Makevars.gen @ONLY NEWLINE_STYLE LF)
     file(GENERATE OUTPUT ../Makevars INPUT ../Makevars.gen NEWLINE_STYLE LF)
 elseif (SKBUILD)
-    nanobind_add_module(pyplanc STABLE_ABI FREE_THREADED NB_STATIC ${CMAKE_CURRENT_SOURCE_DIR}/python/pybind_interface.cpp)
+    nanobind_add_module(_lib STABLE_ABI FREE_THREADED NB_STATIC ${CMAKE_CURRENT_SOURCE_DIR}/python/pybind_interface.cpp)
+    if(SKBUILD_FREETHREAD)
+        target_compile_definitions(_lib PRIVATE Py_GIL_DISABLED)
+    endif()
+    if(CMAKE_BUILD_TYPE MATCHES "Release" OR CMAKE_BUILD_TYPE MATCHES "RelWithDebInfo")
+        target_compile_definitions(_lib PRIVATE NDEBUG)
+    endif()
     #target_include_directories(pyplanc PRIVATE "python")
     find_library(NMFLIB_LIB nmflib)
     if(NMFLIB_LIB)
@@ -460,16 +473,17 @@ elseif (SKBUILD)
 #        if(WIN32)
 #            find_package(CBLAS REQUIRED)
 #        endif()
-        target_include_directories(pyplanc PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/nmf ${NMFLIB_INC})
+        target_include_directories(_lib PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/nmf ${NMFLIB_INC})
         target_link_libraries(progressWrapper PUBLIC indicators::indicators)
-        target_link_libraries(pyplanc PRIVATE utils progressWrapper ${NMFLIB_LIB})
+        target_link_libraries(_lib PRIVATE utils progressWrapper ${NMFLIB_LIB})
     else()
-        target_link_libraries(pyplanc PRIVATE nmflib)
+        target_link_libraries(_lib PRIVATE nmflib)
         target_link_libraries(progressWrapper PUBLIC indicators::indicators)
         target_link_libraries(nmflib PUBLIC progressWrapper)
         install(TARGETS nmflib RUNTIME DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/../" ARCHIVE DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/../" LIBRARY DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/../")
     endif()
-    install(TARGETS pyplanc LIBRARY DESTINATION .)
+
+    install(TARGETS _lib LIBRARY DESTINATION .)
 else()
     install(TARGETS nmflib
             RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
