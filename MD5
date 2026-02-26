@@ -1,6 +1,6 @@
-7faca5c97292a6e9dd017c6e31b64c1c *DESCRIPTION
+4e09e4c25519ad228823d6bb9f9ec8e1 *DESCRIPTION
 6d91dcb311488f8aa31aad6021aa480e *NAMESPACE
-adc071fc462fb92bb7e435363921bd98 *NEWS.md
+7a60cba26bbf5697ec4530b8135cf49f *NEWS.md
 26254af534dcf47f16382a0359d90253 *R/INMF.R
 6d6ce24c354da508d63091d4b285db78 *R/RcppExports.R
 7a2e208894f1b822d49d63b670b95d05 *R/RcppPlanc-package.R
@@ -20,7 +20,7 @@ b24284ce593c271b1a5f892d0e6fa1fa *inst/COPYRIGHTS
 65bb68aab2ad86ae219c1f610e7ffd35 *inst/License.note
 d3d3e80a94c9525d1da03af347d1104b *inst/doc/RcppPlanc.R
 01b1e873278347b894f7cb6b6ce35d48 *inst/doc/RcppPlanc.Rmd
-013bf75ae3f10ed763146e1e7fc551eb *inst/doc/RcppPlanc.html
+f32b47f720102ec143e97a8d9ccde589 *inst/doc/RcppPlanc.html
 494efb0eb721c021ab86f45c7199971a *inst/extdata/ctrl_dense.h5
 57ae44c5fbb4552a0d3df291a0212970 *inst/extdata/ctrl_sparse.h5
 73bace9fdceed7b39a0b7d4787a48c5b *inst/extdata/stim_dense.h5
@@ -116,7 +116,7 @@ fff162a4c1db4e4974a89fa3cde07e78 *src/rcppplanc_nnls.cpp
 027e32679f9a6f3258f4eda93905bd48 *tests/testthat/helper-nmf.R
 842950838e5223f7cf8bd5c76564538a *tests/testthat/test_inmf.R
 df3a61e5e45768b7500e2e78bcde6714 *tests/testthat/test_nmf.R
-06945f2f5091747b9a533c28ee46ac04 *tools/patches/00_remove_stdio.patch
+e0cac4083a5ddeea9db9f75a835ffdc6 *tools/patches/00_remove_stdio.patch
 b65e4aef67a10ff2e646a518500d59a7 *tools/patches/01_remove_sprintf.patch
 1d2108789cdea7ceb760ac93b60a89ab *tools/patches/02_adjust_windows_types.patch
 6f49fb1f1a250d9b14d22c7f62b21f44 *tools/patches/03_remove_abort.patch
